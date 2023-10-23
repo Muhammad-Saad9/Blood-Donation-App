@@ -4,6 +4,8 @@ import 'package:myapp/admin/AddManager.dart';
 import 'package:myapp/admin/admineditdonor.dart';
 import 'package:myapp/mainscreens/donordetail.dart';
 
+import 'Admin1stscreen.dart';
+
 class AdminDonorListScreen extends StatefulWidget {
   @override
   _AdminDonorListScreenState createState() => _AdminDonorListScreenState();
@@ -25,9 +27,13 @@ class _AdminDonorListScreenState extends State<AdminDonorListScreen> {
       appBar: AppBar(
         title: Text('Donor List',),
         actions: [
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AddManager()));
-          }, icon: Icon(Icons.navigation))
+          Row(
+            children:[
+               IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayManagerData()));
+            }, icon: Icon(Icons.manage_accounts)),
+            ],
+          ),
         ],
         backgroundColor: Color.fromARGB(255, 253, 0, 0),
       ),
@@ -66,33 +72,38 @@ class _AdminDonorListScreenState extends State<AdminDonorListScreen> {
                     ),
                   );
                 },
-                child: Container(
-                  color: Color.fromARGB(255, 255, 230, 228),
-                  child: ListTile(
-                  title: Text("Name: $donorName"),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Location: $location"),
-                      
-                      Text("Number: $number"),
-                      Text("Blood Type: $bloodType",
-                  style: TextStyle(
-                    color: Colors.red,
+                child: Column(
+                  children:[ 
+            
+                    Container(
+                    color: Color.fromARGB(255, 255, 230, 228),
+                    child: ListTile(
+                    title: Text("Name: $donorName"),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Location: $location"),
+                        
+                        Text("Number: $number"),
+                        Text("Blood Type: $bloodType",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                    ),
+                        SizedBox(height: 5,)
+                      ],
+                    ),
+                    trailing: ElevatedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserScreen()));
+                                        },style: ButtonStyle(
+                                          backgroundColor: MaterialStatePropertyAll(Colors.red),
+                                        ), child: Text("Edit",
+                                        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                                        )),
                   ),
-                  ),
-                      SizedBox(height: 5,)
-                    ],
-                  ),
-                  trailing: ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserScreen()));
-                                      },style: ButtonStyle(
-                                        backgroundColor: MaterialStatePropertyAll(Colors.red),
-                                      ), child: Text("Edit",
-                                      style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                                      )),
-                ),
-              ),);
+                              ),
+                  ],
+                ),);
             },
           );
         },

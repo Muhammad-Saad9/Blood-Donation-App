@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:myapp/AdminLogin.dart';
+import 'package:myapp/admin/adminadddonor.dart';
 import 'package:myapp/mainscreens/donationscreen.dart';
 
 class register extends StatefulWidget {
@@ -22,7 +23,7 @@ class _registerState extends State<register> {
         email: emailcontroller.text,
         password: passwordcontroller.text,
       );
-      Navigator.push(context, MaterialPageRoute(builder: (context) => DonorListScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddDonorScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

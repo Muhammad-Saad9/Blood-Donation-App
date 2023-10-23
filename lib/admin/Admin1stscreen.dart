@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:myapp/admin/AddManager.dart';
 import 'package:myapp/loginScreen.dart';
 
 class DisplayManagerData extends StatefulWidget {
@@ -28,11 +29,22 @@ class _DisplayManagerDataState extends State<DisplayManagerData> {
         backgroundColor: Colors.red,
         title: Text('Manager Data'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: () {
-              logout();
-            },
+
+          Row(
+            children:[ 
+              IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AddManager()));
+              },
+            ),
+              IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                logout();
+              },
+            ),
+            ],
           ),
         ],
       ),
